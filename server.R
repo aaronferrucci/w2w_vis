@@ -102,12 +102,17 @@ function(input, output) {
         name = "start time (AM)"
       ) + expand_limits(y = hours_to_ms(8.5))
     }
+
     p <- p + ggtitle(title_string(input$y, input$x))
 
     if (input$jitter)
       p <- p + geom_jitter(position = position_jitter(w=.1,h=.1))
     if (input$smooth)
       p <- p + stat_smooth(method = "lm", formula = y ~ x)
+    selected_bib <- subset(select_data, bib == input$bib)
+    if (nrow(selected_bib) > 0) {
+      p <- p + geom_point(data=selected_bib, aes_string(x=input$x, y=input$y), color = "black")
+    }
     print(p)
 
   }, height=600)

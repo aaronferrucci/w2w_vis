@@ -30,6 +30,7 @@ fluidPage(
         ),
         max(dataset$overall)
       ),
+      textInput("bib", "Bib", "--"),
       checkboxInput('smooth', 'Enable Smoother', FALSE),
       checkboxInput('jitter', 'Enable Jitter', FALSE)
     ),
